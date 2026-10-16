@@ -7,7 +7,7 @@ function ProductList() {
 
   useEffect(() => {
     // Mengambil data produk
-    axios.get('http://localhost:5000/api/products')
+    axios.get('https://elektronik-kami-backend.vercel.app/api/products')
       .then(res => setProducts(res.data))
       .catch(err => console.error(err));
   }, []);
