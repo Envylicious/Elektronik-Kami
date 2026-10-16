@@ -14,7 +14,7 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('https://elektronik-kami-backend.vercel.app/api/auth/register', formData);
+      await axios.post('https://elektronik-kami-production.up.railway.app/api/auth/register', formData);
       alert('Registrasi Berhasil! Silakan login.');
       navigate('/login');
     } catch (err) {
