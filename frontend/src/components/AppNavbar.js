@@ -15,7 +15,7 @@ function AppNavbar() {
 
   return (
     <nav className="navbar">
-      <h2>Toko Online</h2>
+      <h2>Elektronik Kami</h2>
       <div>
         <Link to="/">Beranda</Link>
         <Link to="/products">Daftar Produk</Link>
