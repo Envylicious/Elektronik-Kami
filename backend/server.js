@@ -11,11 +11,18 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const mongoURI = process.env.MONGO_URI || 'mongodb://localhost:27017/datatokoonline';
+const mongoURI = process.env.MONGO_URI;
 
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log('MongoDB Terhubung'))
-  .catch(err => console.error('Gagal koneksi MongoDB:', err));
+mongoose.connect(mongoURI, {
+  serverSelectionTimeoutMS: 5000, // Batas waktu memilih server (5 detik)
+})
+.then(() => console.log('MongoDB Atlas Berhasil Terhubung!'))
+.catch(err => console.error('Gagal koneksi ke MongoDB Atlas.', err.message));
+
+// Log koneksi Mongoose
+mongoose.connection.on('error', err => {
+  console.error('Mongoose connection error:', err);
+});
 
 app.use('/api/products', productRoutes);
 app.use('/api/auth', authRoutes);

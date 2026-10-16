@@ -32,24 +32,24 @@ router.post('/register', async (req, res) => {
   }
 });
 
-// LOGIN: Otentikasi & Penerbitan Token JWT
+//login user
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // Cek email
+    //cek email
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(400).json({ message: 'Email atau password salah' });
     }
 
-    // Cek password
+    //cek password
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({ message: 'Email atau password salah' });
     }
 
-    // Buat token
+    //buat token
     const token = jwt.sign(
       { id: user._id, username: user.username },
       process.env.JWT_SECRET,
